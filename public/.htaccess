@@ -1,3 +1,7 @@
+# Forçar o tipo MIME correto para arquivos JavaScript
+AddType application/javascript .js
+AddType application/javascript .mjs
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
