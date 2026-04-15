@@ -137,16 +137,21 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white border-b border-gray-200 py-10 px-12 flex justify-between items-center">
+      <nav className="bg-white border-b border-gray-200 py-4 px-4 md:py-10 md:px-12 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <img src="https://i.ibb.co/CK8V1n2P/logo.png" alt="Logo" className="h-32 w-auto" referrerPolicy="no-referrer" />
+          <img src="https://i.ibb.co/CK8V1n2P/logo.png" alt="Logo" className="h-16 md:h-32 w-auto" referrerPolicy="no-referrer" />
         </div>
-        <div className="flex items-center gap-8 text-sm font-bold text-slate-700">
+        <div className="hidden md:flex items-center gap-8 text-sm font-bold text-slate-700">
           <button onClick={() => setPage('home')} className="hover:text-teal-800">QUEM SOMOS</button>
           <button className="hover:text-teal-800">CONTATO</button>
           <button className="hover:text-teal-800">DÚVIDAS</button>
           <button onClick={() => setShowLoginModal(true)} className="text-slate-300 hover:text-teal-800 opacity-50 hover:opacity-100 transition-opacity">
             <Lock size={16} />
+          </button>
+        </div>
+        <div className="md:hidden">
+          <button onClick={() => setShowLoginModal(true)} className="text-slate-700">
+            <Lock size={24} />
           </button>
         </div>
       </nav>
