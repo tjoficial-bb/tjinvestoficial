@@ -1,0 +1,28 @@
+{
+  "entities": {
+    "Imovel": {
+      "title": "Imovel",
+      "description": "Dados de um imóvel de leilão",
+      "type": "object",
+      "properties": {
+        "titulo": { "type": "string", "description": "Título do imóvel" },
+        "preco": { "type": "number", "description": "Preço atual" },
+        "preco_avaliacao": { "type": "number", "description": "Preço de avaliação" },
+        "desconto": { "type": "number", "description": "Porcentagem de desconto" },
+        "cidade": { "type": "string", "description": "Cidade" },
+        "estado": { "type": "string", "description": "Estado" },
+        "imagem": { "type": "string", "description": "URL da imagem" },
+        "url_leilao": { "type": "string", "description": "Link original" },
+        "data_leilao": { "type": "string", "format": "date-time", "description": "Data do leilão" },
+        "score": { "type": "number", "description": "Score de oportunidade" }
+      },
+      "required": ["titulo", "preco", "cidade", "estado", "url_leilao"]
+    }
+  },
+  "firestore": {
+    "/imoveis/{imovelId}": {
+      "schema": "Imovel",
+      "description": "Coleção de imóveis de leilão"
+    }
+  }
+}
