@@ -8,8 +8,7 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
     build: {
-      outDir: '.',
-      emptyOutDir: false,
+      outDir: 'dist',
     },
     plugins: [
       react(), 
