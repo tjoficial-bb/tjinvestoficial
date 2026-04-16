@@ -9,6 +9,7 @@ export default defineConfig(({mode}) => {
   return {
     build: {
       outDir: 'public_html',
+      emptyOutDir: false,
     },
     plugins: [
       react(), 
