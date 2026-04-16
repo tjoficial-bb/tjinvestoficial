@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, onSnapshot, query, orderBy, doc, deleteDoc, updateDoc, addDoc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 import { signInWithEmailAndPassword, onAuthStateChanged, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { Lock } from 'lucide-react';
+import { Lock, Menu, X } from 'lucide-react';
 import { db, auth } from './lib/firebase';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
@@ -34,6 +34,7 @@ interface Imovel {
 }
 
 const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, setLoginUser, loginPass, setLoginPass, handleLogin, handleCreateAccount, handleGoogleLogin }: { setPage: (page: string) => void, user: any, showLoginModal: boolean, setShowLoginModal: (show: boolean) => void, loginUser: string, setLoginUser: (u: string) => void, loginPass: string, setLoginPass: (p: string) => void, handleLogin: () => Promise<void>, handleCreateAccount: () => Promise<void>, handleGoogleLogin: () => Promise<void> }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [imoveis, setImoveis] = useState<Imovel[]>([]);
   const [cidadeFiltro, setCidadeFiltro] = useState('');
   const [modalidadeFiltro, setModalidadeFiltro] = useState('');
@@ -137,10 +138,12 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white border-b border-gray-200 py-4 px-4 md:py-10 md:px-12 flex justify-between items-center">
+      <nav className="bg-white border-b border-gray-200 py-4 px-4 md:py-10 md:px-12 flex justify-between items-center relative">
         <div className="flex items-center gap-2">
           <img src="https://i.ibb.co/CK8V1n2P/logo.png" alt="Logo" className="h-16 md:h-32 w-auto" referrerPolicy="no-referrer" />
         </div>
+        
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 text-sm font-bold text-slate-700">
           <button onClick={() => setPage('home')} className="hover:text-teal-800">QUEM SOMOS</button>
           <button className="hover:text-teal-800">CONTATO</button>
@@ -149,11 +152,22 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
             <Lock size={16} />
           </button>
         </div>
+
+        {/* Mobile Hamburger Button */}
         <div className="md:hidden">
-          <button onClick={() => setShowLoginModal(true)} className="text-slate-700">
-            <Lock size={24} />
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-700">
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMenuOpen && (
+          <div className="absolute top-full left-0 w-full bg-white border-b border-gray-200 py-4 px-4 flex flex-col gap-4 text-sm font-bold text-slate-700 md:hidden z-50">
+            <button onClick={() => { setPage('home'); setIsMenuOpen(false); }} className="hover:text-teal-800 text-left">QUEM SOMOS</button>
+            <button onClick={() => setIsMenuOpen(false)} className="hover:text-teal-800 text-left">CONTATO</button>
+            <button onClick={() => setIsMenuOpen(false)} className="hover:text-teal-800 text-left">DÚVIDAS</button>
+          </div>
+        )}
       </nav>
 
       {error && (
