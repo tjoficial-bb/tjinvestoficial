@@ -7,6 +7,9 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
+    build: {
+      outDir: 'public_html',
+    },
     plugins: [
       react(), 
       tailwindcss(),
