@@ -8,7 +8,7 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
     build: {
-      outDir: 'public_html',
+      outDir: '.',
       emptyOutDir: false,
     },
     plugins: [
