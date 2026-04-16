@@ -8,19 +8,11 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
     build: {
-      outDir: 'dist',
+      outDir: '.',
     },
     plugins: [
       react(), 
       tailwindcss(),
-      viteStaticCopy({
-        targets: [
-          {
-            src: '.htaccess',
-            dest: ''
-          }
-        ]
-      })
     ],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
