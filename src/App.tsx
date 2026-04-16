@@ -139,7 +139,7 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white border-b border-gray-200 py-6 px-4 md:py-10 md:px-12 flex justify-between items-center relative">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           <img src="https://i.ibb.co/CK8V1n2P/logo.png" alt="Logo" className="h-16 md:h-32 w-auto" referrerPolicy="no-referrer" />
         </div>
         
@@ -154,7 +154,7 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
         </div>
 
         {/* Mobile Hamburger Button */}
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-4">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-700">
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
