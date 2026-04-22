@@ -177,10 +177,10 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
         </div>
       )}
 
-      <div className="relative h-96 bg-teal-900 overflow-hidden">
+      <div className="relative h-[450px] sm:h-96 bg-teal-900 overflow-hidden">
         <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop" alt="Banner" className="w-full h-full object-cover opacity-60" referrerPolicy="no-referrer" />
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Leilões de imóveis em todo o Brasil</h1>
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">Leilões de imóveis em todo o Brasil</h1>
           
           <div className="bg-white p-3 rounded-lg shadow-xl w-full max-w-4xl grid grid-cols-1 md:grid-cols-5 gap-2 md:p-6">
             <input type="text" placeholder="Busque por endereço ou cidade..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="md:col-span-2 p-3 text-base border rounded-md" />
