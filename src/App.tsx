@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { collection, onSnapshot, query, orderBy, doc, deleteDoc, updateDoc, addDoc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, onSnapshot, query, orderBy, doc, deleteDoc, updateDoc, addDoc, getDoc, getDocs, setDoc, limit } from 'firebase/firestore';
 import { signInWithEmailAndPassword, onAuthStateChanged, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { Lock, Menu, X } from 'lucide-react';
 import { db, auth } from './lib/firebase';
@@ -49,18 +49,21 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
     const fetchImoveis = async () => {
       console.log("Iniciando carregamento de imóveis...");
       try {
-        const q = query(collection(db, 'imoveis'));
+        // Agora usamos a persistência nativa do Firebase SDK (ativada no firebase.ts)
+        // Adicionamos um limite de 500 itens para não esgotar a cota diária de leitura rapidamente
+        const q = query(collection(db, 'imoveis'), limit(500));
         const snapshot = await getDocs(q);
-        console.log("Dados carregados. Número de documentos:", snapshot.docs.length);
+        
+        console.log("Dados carregados do Firebase. Documentos lidos:", snapshot.docs.length);
         const imoveisCarregados = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Imovel));
-        if (imoveisCarregados.length > 0) {
-          const cidadesUnicas = Array.from(new Set(imoveisCarregados.map(i => i.cidade)));
-          console.log("Cidades únicas encontradas:", cidadesUnicas);
-        }
         setImoveis(imoveisCarregados);
+        
+        if (snapshot.metadata.fromCache) {
+          console.log("Servindo do cache local para economizar cota.");
+        }
       } catch (error) {
         console.error("Erro detalhado ao carregar imóveis:", error);
-        setError(`Erro ao carregar imóveis: ${error instanceof Error ? error.message : String(error)}`);
+        setError(`Erro de acesso ao banco de dados: ${error instanceof Error && error.message.includes('quota') ? 'Limite de uso diário atingido. O site voltará ao normal em breve.' : error instanceof Error ? error.message : String(error)}`);
       }
     };
     fetchImoveis();
@@ -180,7 +183,7 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
       <div className="relative min-h-[400px] bg-slate-900 overflow-hidden flex items-center justify-center">
         <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop" alt="Banner" className="absolute inset-0 w-full h-full object-cover opacity-60" referrerPolicy="no-referrer" />
         <div className="relative z-10 w-full px-4 text-center">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-6">Leilões de imóveis em todo o Brasil</h1>
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">Leilões de imóveis<br className="sm:hidden" /> em todo o Brasil</h1>
           
           <div className="bg-white p-3 rounded-lg shadow-xl w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-2 md:p-6">
             <input type="text" placeholder="Busque..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="md:col-span-2 p-3 text-sm md:text-base border border-gray-300 rounded-md" />
