@@ -146,10 +146,10 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
         
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-10 text-xs font-bold text-slate-800 tracking-widest uppercase">
-          <button onClick={() => setPage('home')} className="hover:text-teal-800 transition-colors">Quem Somos</button>
-          <button className="hover:text-teal-800 transition-colors">Contato</button>
-          <button className="hover:text-teal-800 transition-colors">Dúvidas</button>
-          <button onClick={() => setShowLoginModal(true)} className="text-slate-400 hover:text-teal-800 transition-colors">
+          <button onClick={() => setPage('home')} className="hover:text-amber-600 transition-colors">Quem Somos</button>
+          <button className="hover:text-amber-600 transition-colors">Contato</button>
+          <button className="hover:text-amber-600 transition-colors">Dúvidas</button>
+          <button onClick={() => setShowLoginModal(true)} className="text-slate-400 hover:text-amber-600 transition-colors">
             <Lock size={16} />
           </button>
         </div>
@@ -164,9 +164,9 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
         {/* Mobile Menu Dropdown */}
         {isMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-white border-b border-gray-200 py-4 px-4 flex flex-col gap-4 text-sm font-bold text-slate-700 md:hidden z-50">
-            <button onClick={() => { setPage('home'); setIsMenuOpen(false); }} className="hover:text-teal-800 text-left">QUEM SOMOS</button>
-            <button onClick={() => setIsMenuOpen(false)} className="hover:text-teal-800 text-left">CONTATO</button>
-            <button onClick={() => setIsMenuOpen(false)} className="hover:text-teal-800 text-left">DÚVIDAS</button>
+            <button onClick={() => { setPage('home'); setIsMenuOpen(false); }} className="hover:text-amber-600 text-left transition-colors">Quem Somos</button>
+            <button onClick={() => setIsMenuOpen(false)} className="hover:text-amber-600 text-left transition-colors">Contato</button>
+            <button onClick={() => setIsMenuOpen(false)} className="hover:text-amber-600 text-left transition-colors">Dúvidas</button>
           </div>
         )}
       </nav>
@@ -177,7 +177,7 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
         </div>
       )}
 
-      <div className="relative h-[450px] sm:h-96 bg-teal-900 overflow-hidden">
+      <div className="relative h-[450px] sm:h-96 bg-slate-900 overflow-hidden">
         <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop" alt="Banner" className="w-full h-full object-cover opacity-60" referrerPolicy="no-referrer" />
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4">
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">Leilões de imóveis em todo o Brasil</h1>
@@ -192,7 +192,7 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
               <option value="">Modalidade</option>
               {modalidades.map((m, i) => <option key={`mod-${i}`} value={m}>{m}</option>)}
             </select>
-            <Button className="bg-indigo-600 text-white p-3 text-base font-bold hover:bg-indigo-700">BUSCAR</Button>
+            <Button className="bg-amber-600 text-white p-3 text-base font-bold hover:bg-amber-700 transition-colors">BUSCAR</Button>
             
             {/* Ocultando Cidade por enquanto para ganhar espaço vertical no celular, se precisar, adicionar de volta com cuidado */}
           </div>
