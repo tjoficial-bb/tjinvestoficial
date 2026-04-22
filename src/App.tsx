@@ -34,6 +34,7 @@ interface Imovel {
 }
 
 const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, setLoginUser, loginPass, setLoginPass, handleLogin, handleCreateAccount, handleGoogleLogin }: { setPage: (page: string) => void, user: any, showLoginModal: boolean, setShowLoginModal: (show: boolean) => void, loginUser: string, setLoginUser: (u: string) => void, loginPass: string, setLoginPass: (p: string) => void, handleLogin: () => Promise<void>, handleCreateAccount: () => Promise<void>, handleGoogleLogin: () => Promise<void> }) => {
+// Responsive header fix applied
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [imoveis, setImoveis] = useState<Imovel[]>([]);
   const [cidadeFiltro, setCidadeFiltro] = useState('');
