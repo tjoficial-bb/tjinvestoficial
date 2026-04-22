@@ -139,9 +139,9 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white border-b border-gray-200 py-6 px-4 md:py-10 md:px-12 flex justify-between items-center relative">
-        <div className="flex items-center gap-4">
-          <img src="https://i.ibb.co/CK8V1n2P/logo.png" alt="Logo" className="h-16 md:h-32 w-auto" referrerPolicy="no-referrer" />
+      <nav className="bg-white border-b border-gray-200 py-2 px-2 md:py-4 md:px-12 flex justify-between items-center relative">
+        <div className="flex items-center gap-2">
+          <img src="https://i.ibb.co/CK8V1n2P/logo.png" alt="Logo" className="h-10 md:h-16 w-auto" referrerPolicy="no-referrer" />
         </div>
         
         {/* Desktop Menu */}
@@ -182,21 +182,21 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Leilões de imóveis em todo o Brasil</h1>
           
-          <div className="bg-white p-4 rounded-lg shadow-lg w-full max-w-4xl flex flex-col md:flex-row gap-4">
-            <input type="text" placeholder="Busque pela localização do imóvel" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="flex-1 p-3 border rounded-md" />
-            <select className="p-3 border rounded-md w-full md:w-48" value={estadoFiltro} onChange={(e) => setEstadoFiltro(e.target.value)}>
-              <option value="">Todos os Estados</option>
+          <div className="bg-white p-2 rounded-lg shadow-lg w-full max-w-4xl flex flex-col gap-2 md:p-6 md:flex-row md:gap-4">
+            <input type="text" placeholder="Busque..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="flex-1 p-2 text-sm border rounded-md" />
+            <select className="p-2 text-sm border rounded-md w-full md:w-32" value={estadoFiltro} onChange={(e) => setEstadoFiltro(e.target.value)}>
+              <option value="">Estado</option>
               {estados.map((e, i) => <option key={`estado-${i}`} value={e}>{e}</option>)}
             </select>
-            <select className="p-3 border rounded-md w-full md:w-48" value={modalidadeFiltro} onChange={(e) => setModalidadeFiltro(e.target.value)}>
-              <option value="">Todas as Modalidades</option>
+            <select className="p-2 text-sm border rounded-md w-full md:w-32" value={modalidadeFiltro} onChange={(e) => setModalidadeFiltro(e.target.value)}>
+              <option value="">Modalidade</option>
               {modalidades.map((m, i) => <option key={`mod-${i}`} value={m}>{m}</option>)}
             </select>
-            <select className="p-3 border rounded-md w-full md:w-48" value={cidadeFiltro} onChange={(e) => setCidadeFiltro(e.target.value)}>
-              <option value="">Todas as Cidades</option>
+            <select className="p-2 text-sm border rounded-md w-full md:w-32" value={cidadeFiltro} onChange={(e) => setCidadeFiltro(e.target.value)}>
+              <option value="">Cidade</option>
               {cidades.map((c, i) => <option key={`cidade-${i}`} value={c}>{c}</option>)}
             </select>
-            <Button className="bg-indigo-600 text-white px-8 hover:bg-indigo-700">BUSCAR</Button>
+            <Button className="bg-indigo-600 text-white p-2 text-sm hover:bg-indigo-700">BUSCAR</Button>
           </div>
         </div>
       </div>
