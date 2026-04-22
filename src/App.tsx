@@ -182,21 +182,19 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Leilões de imóveis em todo o Brasil</h1>
           
-          <div className="bg-white p-2 rounded-lg shadow-lg w-full max-w-4xl flex flex-col gap-2 md:p-6 md:flex-row md:gap-4">
-            <input type="text" placeholder="Busque..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="flex-1 p-2 text-sm border rounded-md" />
-            <select className="p-2 text-sm border rounded-md w-full md:w-32" value={estadoFiltro} onChange={(e) => setEstadoFiltro(e.target.value)}>
+          <div className="bg-white p-3 rounded-lg shadow-xl w-full max-w-4xl grid grid-cols-1 md:grid-cols-5 gap-2 md:p-6">
+            <input type="text" placeholder="Busque por endereço ou cidade..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="md:col-span-2 p-3 text-base border rounded-md" />
+            <select className="p-3 text-base border rounded-md" value={estadoFiltro} onChange={(e) => setEstadoFiltro(e.target.value)}>
               <option value="">Estado</option>
               {estados.map((e, i) => <option key={`estado-${i}`} value={e}>{e}</option>)}
             </select>
-            <select className="p-2 text-sm border rounded-md w-full md:w-32" value={modalidadeFiltro} onChange={(e) => setModalidadeFiltro(e.target.value)}>
+            <select className="p-3 text-base border rounded-md" value={modalidadeFiltro} onChange={(e) => setModalidadeFiltro(e.target.value)}>
               <option value="">Modalidade</option>
               {modalidades.map((m, i) => <option key={`mod-${i}`} value={m}>{m}</option>)}
             </select>
-            <select className="p-2 text-sm border rounded-md w-full md:w-32" value={cidadeFiltro} onChange={(e) => setCidadeFiltro(e.target.value)}>
-              <option value="">Cidade</option>
-              {cidades.map((c, i) => <option key={`cidade-${i}`} value={c}>{c}</option>)}
-            </select>
-            <Button className="bg-indigo-600 text-white p-2 text-sm hover:bg-indigo-700">BUSCAR</Button>
+            <Button className="bg-indigo-600 text-white p-3 text-base font-bold hover:bg-indigo-700">BUSCAR</Button>
+            
+            {/* Ocultando Cidade por enquanto para ganhar espaço vertical no celular, se precisar, adicionar de volta com cuidado */}
           </div>
         </div>
       </div>
