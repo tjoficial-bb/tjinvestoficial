@@ -139,17 +139,17 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white border-b border-gray-200 py-2 px-2 md:py-4 md:px-12 flex justify-between items-center relative">
+      <nav className="bg-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-100 py-3 px-4 md:py-4 md:px-12 flex justify-between items-center transition-all">
         <div className="flex items-center gap-2">
-          <img src="https://i.ibb.co/CK8V1n2P/logo.png" alt="Logo" className="h-10 md:h-16 w-auto" referrerPolicy="no-referrer" />
+          <img src="https://i.ibb.co/CK8V1n2P/logo.png" alt="Logo" className="h-8 md:h-12 w-auto" referrerPolicy="no-referrer" />
         </div>
         
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-bold text-slate-700">
-          <button onClick={() => setPage('home')} className="hover:text-teal-800">QUEM SOMOS</button>
-          <button className="hover:text-teal-800">CONTATO</button>
-          <button className="hover:text-teal-800">DÚVIDAS</button>
-          <button onClick={() => setShowLoginModal(true)} className="text-slate-300 hover:text-teal-800 opacity-50 hover:opacity-100 transition-opacity">
+        <div className="hidden md:flex items-center gap-10 text-xs font-bold text-slate-800 tracking-widest uppercase">
+          <button onClick={() => setPage('home')} className="hover:text-teal-800 transition-colors">Quem Somos</button>
+          <button className="hover:text-teal-800 transition-colors">Contato</button>
+          <button className="hover:text-teal-800 transition-colors">Dúvidas</button>
+          <button onClick={() => setShowLoginModal(true)} className="text-slate-400 hover:text-teal-800 transition-colors">
             <Lock size={16} />
           </button>
         </div>
