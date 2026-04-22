@@ -177,24 +177,22 @@ const Home = ({ setPage, user, showLoginModal, setShowLoginModal, loginUser, set
         </div>
       )}
 
-      <div className="relative h-[450px] sm:h-96 bg-slate-900 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop" alt="Banner" className="w-full h-full object-cover opacity-60" referrerPolicy="no-referrer" />
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">Leilões de imóveis em todo o Brasil</h1>
+      <div className="relative min-h-[400px] bg-slate-900 overflow-hidden flex items-center justify-center">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop" alt="Banner" className="absolute inset-0 w-full h-full object-cover opacity-60" referrerPolicy="no-referrer" />
+        <div className="relative z-10 w-full px-4 text-center">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-6">Leilões de imóveis em todo o Brasil</h1>
           
-          <div className="bg-white p-3 rounded-lg shadow-xl w-full max-w-4xl grid grid-cols-1 md:grid-cols-5 gap-2 md:p-6">
-            <input type="text" placeholder="Busque por endereço ou cidade..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="md:col-span-2 p-3 text-base border rounded-md" />
-            <select className="p-3 text-base border rounded-md" value={estadoFiltro} onChange={(e) => setEstadoFiltro(e.target.value)}>
+          <div className="bg-white p-3 rounded-lg shadow-xl w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-2 md:p-6">
+            <input type="text" placeholder="Busque..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="md:col-span-2 p-3 text-sm md:text-base border border-gray-300 rounded-md" />
+            <select className="p-3 text-sm md:text-base border border-gray-300 rounded-md" value={estadoFiltro} onChange={(e) => setEstadoFiltro(e.target.value)}>
               <option value="">Estado</option>
               {estados.map((e, i) => <option key={`estado-${i}`} value={e}>{e}</option>)}
             </select>
-            <select className="p-3 text-base border rounded-md" value={modalidadeFiltro} onChange={(e) => setModalidadeFiltro(e.target.value)}>
+            <select className="p-3 text-sm md:text-base border border-gray-300 rounded-md" value={modalidadeFiltro} onChange={(e) => setModalidadeFiltro(e.target.value)}>
               <option value="">Modalidade</option>
               {modalidades.map((m, i) => <option key={`mod-${i}`} value={m}>{m}</option>)}
             </select>
-            <Button className="bg-amber-600 text-white p-3 text-base font-bold hover:bg-amber-700 transition-colors">BUSCAR</Button>
-            
-            {/* Ocultando Cidade por enquanto para ganhar espaço vertical no celular, se precisar, adicionar de volta com cuidado */}
+            <Button className="bg-amber-600 text-white p-3 text-sm md:text-base font-bold hover:bg-amber-700 transition-colors">BUSCAR</Button>
           </div>
         </div>
       </div>
